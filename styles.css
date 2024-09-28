@@ -1,0 +1,81 @@
+/* Reset mặc định */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Định dạng Menu */
+.menu {
+    background-color: #1e3a8a; /* Màu xanh dương đậm */
+    overflow: hidden;
+    text-align: center;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+}
+
+.menu a {
+    padding: 14px 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    background-color: #60faf2; /* Màu xanh nhạt khi hover */
+    color: #fff;
+}
+
+/* Định dạng Tab Menu */
+.tab-container {
+    background-color: #60a5fa; /* Màu xanh nhạt */
+    margin: 20px 0; /* Tăng khoảng cách trên và dưới */
+    text-align: center;
+    padding: 20px; /* Tăng padding để vùng màu xanh lớn hơn */
+    border-radius: 10px; /* Làm tròn các góc của vùng tab */
+}
+.tab-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-menu li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.tab-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: #1e3a8a; /* Màu xanh dương đậm */
+    border-radius: 5px;
+}
+
+.tab-menu a:hover {
+    background-color: #60faf2; /* Màu xanh nhạt khi hover */
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

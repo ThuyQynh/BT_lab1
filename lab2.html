@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - HTML và CSS</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tab-menu {
+            list-style-type: none;
+            padding: 0;
+            background-color: #1e3a8a;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tab-menu li {
+            margin: 0 10px;
+            flex: 1;
+        }
+
+        .tab-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            display: block;
+            text-align: center;
+        }
+
+        .tabs {
+            padding: 10px;
+            text-align: center;
+        }
+
+        label {
+            padding: 10px;
+            margin-right: 10px;
+            background-color: #1e3a8a;
+            color: white;
+            cursor: pointer;
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        .tab-content h2 {
+            margin-top: 0;
+        }
+
+        .link {
+            background-color: #60faf2;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Hiệu ứng khi tab được chọn */
+        input[type="radio"]:checked + label {
+            background-color: #60faf2;
+            border: 2px solid #1e3a8a;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <ul class="tab-menu">
+            <li><a href="lab1.html">Lab 1</a></li>
+            <li><a href="lab2.html" class="active">Lab 2</a></li>
+            <li><a href="lab3.html">Lab 3</a></li>
+            <li><a href="lab4.html">Lab 4</a></li>
+        </ul>
+    </div>
+
+    <nav class="tabs">
+        <input type="radio" id="tab-requirement" name="tab" checked>
+        <label for="tab-requirement">Requirement</label>
+
+        <input type="radio" id="tab-design" name="tab">
+        <label for="tab-design">Design</label>
+
+        <input type="radio" id="tab-implement" name="tab">
+        <label for="tab-implement">Implement</label>
+    </nav>
+
+    <!-- Nội dung các tab -->
+    <div class="content">
+        <section id="content-requirement" class="tab-content">
+            <h2>Waiting...</h2>
+           
+        </section>
+
+        <section id="content-design" class="tab-content">
+            <h2>Thiết kế</h2>
+            <p>Nội dung thiết kế cho Lab 2 ở đây...</p>
+        </section>
+
+        <section id="content-implement" class="tab-content">
+            <h2>Triển khai</h2>
+            <p>Nội dung triển khai cho Lab 2 ở đây...</p>
+        </section>
+    </div>
+
+    <script>
+        // Lắng nghe sự kiện khi tab thay đổi
+        const tabs = document.querySelectorAll('input[name="tab"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('change', () => {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none'; // Ẩn tất cả nội dung
+                });
+                document.querySelector(`#content-${tab.id.split('-')[1]}`).style.display = 'block'; // Hiển thị nội dung tương ứng
+            });
+        });
+
+        // Hiển thị nội dung tab mặc định khi tải trang
+        document.querySelector(`#content-requirement`).style.display = 'block';
+    </script>
+    
+    <footer>
+        <p>Trang cá nhân của Quỳnh</p>
+    </footer>
+    <style>
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            background-color: #1e3a8a; /* Màu nền giống như thanh menu */
+            color: white; /* Màu chữ trắng cho footer */
+            padding: 10px 0; /* Thêm khoảng đệm cho footer */
+        }
+    </style>
+</body>
+</html>

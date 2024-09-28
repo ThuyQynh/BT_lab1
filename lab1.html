@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Java</title>
+    <style>
+        body {
+            background-color: #f4f4f4; /* Nền sáng */
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.menu {
+            display: none; /* Ẩn menu Home và About */
+        }
+
+        .tab-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tab-menu {
+            list-style-type: none;
+            padding: 0;
+            background-color: #1e3a8a; /* Màu nền của các tab */
+            display: flex;
+            justify-content: center; /* Căn giữa */
+        }
+
+        .tab-menu li {
+            margin: 0 10px;
+            flex: 1; /* Chiều rộng bằng nhau cho các tab */
+        }
+
+        .tab-menu a {
+            color: white; /* Chữ màu trắng */
+            text-decoration: none;
+            padding: 10px 0; /* Padding trên dưới */
+            display: block; /* Để link chiếm toàn bộ chiều rộng */
+            text-align: center; /* Căn giữa chữ */
+        }
+
+        .tabs {
+            padding: 10px;
+            text-align: center;
+        }
+
+        label {
+            padding: 10px;
+            margin-right: 10px;
+            background-color: #1e3a8a; /* Màu nền của nhãn */
+            color: white;
+            cursor: pointer;
+            display: inline-block; /* Để căn giữa */
+            width: 150px; /* Đặt chiều rộng cụ thể */
+            text-align: center; /* Căn giữa chữ */
+            border: 2px solid transparent; /* Khung trong suốt ban đầu */
+            border-radius: 5px; /* Bo tròn các góc */
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white; /* Màu nền của nội dung yêu cầu */
+            border: 1px solid #ccc;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        .tab-content h2 {
+            margin-top: 0;
+        }
+
+        .tab-content p {
+            font-size: 16px;
+        }
+
+        .link {
+            background-color: #4eb6d6; /* Màu nền của liên kết */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .link:hover {
+            background-color: #28a745; /* Màu nền khi hover */
+        }
+
+        /* Hiệu ứng khi tab được chọn */
+        input[type="radio"]:checked + label {
+            background-color: #4ecdd6; /* Màu nền khi tab được chọn */
+            border: 2px solid #1e3a8a; /* Khung màu khi tab được chọn */
+        }
+
+        /* Hiệu ứng khi tab Lab được chọn */
+        .tab-menu li a.active {
+            background-color: #4ecdd6; /* Màu nền cho tab Lab khi được chọn */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            background-color: #1e3a8a; /* Màu nền giống như thanh menu */
+            color: white; /* Màu chữ trắng cho footer */
+            padding: 10px 0; /* Thêm khoảng đệm cho footer */
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <ul class="tab-menu">
+            <li><a href="lab1.html" class="active" onclick="switchTab('lab1')">Lab 1</a></li>
+            <li><a href="lab2.html" onclick="switchTab('lab2')">Lab 2</a></li>
+            <li><a href="lab3.html" onclick="switchTab('lab3')">Lab 3</a></li>
+            <li><a href="lab4.html" onclick="switchTab('lab4')">Lab 4</a></li>
+        </ul>
+    </div>
+    
+    <nav class="tabs">
+        <input type="radio" id="tab-requirement" name="tab" checked>
+        <label for="tab-requirement">Requirement</label>
+
+        <input type="radio" id="tab-design" name="tab">
+        <label for="tab-design">Design</label>
+
+        <input type="radio" id="tab-implement" name="tab">
+        <label for="tab-implement">Implement</label>
+    </nav>
+
+    <!-- Nút quay lại -->
+    <button onclick="goBack()" style="margin: 20px; padding: 10px; background-color: #1e3a8a; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Quay lại
+    </button>
+
+    <!-- Nội dung các tab -->
+    <div class="content">
+        <section id="content-requirement" class="tab-content">
+            <h2>Yêu cầu</h2>
+            <p>
+                Chọn 1 đối tượng bất kỳ trong thế giới thực, ví dụ như lớp môn học, giảng viên,... 
+                Sau đó thiết kế chức năng Quản lý đối tượng đó trên HTML bao gồm các tính năng thêm, sửa, xóa, tìm kiếm cho đối tượng đó. 
+                Ví dụ, làm chức năng Quản lý Sinh viên, bao gồm tính năng thêm, sửa, xóa, tìm kiếm.
+            </p>
+        </section>
+
+        <section id="content-design" class="tab-content">
+            <h2>Thiết kế</h2>
+            <p>Liên kết tới hình ảnh thiết kế và ảnh chụp giao diện:</p>
+            <a href="https://drive.google.com/file/d/1f2lEOwZK7GVq72ntEx-2v8MLgkHq_Ado/view?usp=drive_link" target="_blank">
+                <img src="https://drive.google.com/uc?id=1f2lEOwZK7GVq72ntEx-2v8MLgkHq_Ado" alt="Hình ảnh thiết kế trên giấy" width="200px">
+            </a><br>
+        
+            <a href="https://drive.google.com/file/d/1qKXhZQfLDTNO8NROLOuAcqmvGk4wnlJw/view?usp=drive_link" target="_blank">
+                <img src="https://drive.google.com/uc?id=1qKXhZQfLDTNO8NROLOuAcqmvGk4wnlJw" alt="Hình ảnh thiết kế trên HTML" width="200px">
+            </a>
+        </section>
+
+        <section id="content-implement" class="tab-content">
+            <h2>Triển khai</h2>
+            <p>Quản lý sinh viên là một chức năng quan trọng trong hệ thống. Bạn có thể truy cập trang quản lý sinh viên bằng cách nhấp vào liên kết dưới đây:</p>
+            <a href="manage_lab1.html" class="link" target="_blank">Quản lý nhân viên</a>
+        </section>
+    </div>
+
+    <script>
+        // Lắng nghe sự kiện khi tab thay đổi
+        const tabs = document.querySelectorAll('input[name="tab"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('change', () => {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none'; // Ẩn tất cả nội dung
+                });
+                document.querySelector(`#content-${tab.id.split('-')[1]}`).style.display = 'block'; // Hiển thị nội dung tương ứng
+            });
+        });
+
+        // Hiển thị nội dung tab mặc định khi tải trang
+        document.querySelector(`#content-requirement`).style.display = 'block';
+
+        // Hàm chuyển tab
+        function switchTab(lab) {
+            const labLinks = document.querySelectorAll('.tab-menu a');
+            labLinks.forEach(link => link.classList.remove('active')); // Xóa lớp active khỏi tất cả
+            document.querySelector(`.tab-menu a[href="lab${lab}.html"]`).classList.add('active'); // Thêm lớp active vào tab được nhấn
+            
+            // Tải trang mới
+            window.location.href = `lab${lab}.html`;
+        }
+
+        // Hàm quay lại trang trước
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    
+    <footer>
+        <p>Trang cá nhân của Quỳnh</p>
+    </footer>
+</body>
+</html>

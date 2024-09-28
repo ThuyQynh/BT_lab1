@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Nhân Viên</title>
+    <link rel="stylesheet" href="manageStyles_lab1.css">
+</head>
+<body>
+    <header>
+        <h1>Quản Lý Nhân Viên</h1>
+    </header>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('addEmployee')">Thêm Nhân Viên</button>
+            <button class="tab-button" onclick="showTab('searchEmployee')">Tìm Kiếm Nhân Viên</button>
+            <button class="tab-button" onclick="showTab('listEmployee')">Danh Sách Nhân Viên</button>
+            <button class="tab-button" onclick="showTab('manageSalary')">Quản Lý Lương</button>
+            <button class="tab-button" onclick="showTab('manageTime')">Quản Lý Thời Gian</button>
+        </div>
+
+        <div id="addEmployee" class="tab-content">
+            <h2>Thêm Nhân Viên</h2>
+            <input type="text" id="employeeId" placeholder="Mã nhân viên" required>
+            <input type="text" id="name" placeholder="Tên nhân viên" required>
+            <input type="text" id="position" placeholder="Vị trí" required>
+            <input type="text" id="department" placeholder="Bộ phận" required>
+            <input type="date" id="joinDate" placeholder="Ngày vào làm" required>
+            <input type="number" id="salary" placeholder="Lương" required>
+            <button onclick="addEmployee()">Thêm Nhân Viên</button>
+        </div>
+
+        <div id="searchEmployee" class="tab-content" style="display: none;">
+            <h2>Tìm Kiếm Nhân Viên</h2>
+            <input type="text" id="searchInput" placeholder="Nhập tên hoặc mã nhân viên" required>
+            <button onclick="searchEmployee()">Tìm Kiếm</button>
+            <table id="searchResult" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Tên</th>
+                        <th>Vị Trí</th>
+                        <th>Bộ Phận</th>
+                        <th>Ngày Vào Làm</th>
+                        <th>Lương</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="searchEmployeeList">
+                    <!-- Kết quả tìm kiếm sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="listEmployee" class="tab-content" style="display: none;">
+            <h2>Danh Sách Nhân Viên</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Tên</th>
+                        <th>Vị Trí</th>
+                        <th>Bộ Phận</th>
+                        <th>Ngày Vào Làm</th>
+                        <th>Lương</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList">
+                    <!-- Danh sách nhân viên sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="manageSalary" class="tab-content" style="display: none;">
+            <h2>Quản Lý Lương</h2>
+            <input type="text" id="salaryEmployeeId" placeholder="Mã Nhân Viên" required>
+            <input type="number" id="newSalary" placeholder="Mức Lương Mới" required>
+            <button onclick="updateSalary()">Cập Nhật Lương</button>
+            <h3>Lịch Sử Thay Đổi Lương</h3>
+            <table id="salaryHistory">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Ngày Thay Đổi</th>
+                        <th>Mức Lương Mới</th>
+                        <th>Lý Do</th>
+                    </tr>
+                </thead>
+                <tbody id="salaryHistoryList">
+                    <!-- Lịch sử thay đổi lương sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="manageTime" class="tab-content" style="display: none;">
+            <h2>Quản Lý Thời Gian</h2>
+            <h3>Ghi Nhận Thời Gian Vào/Ra</h3>
+            <input type="text" id="timeEmployeeId" placeholder="Mã Nhân Viên" required>
+            <input type="time" id="timeIn" placeholder="Thời Gian Vào" required>
+            <input type="time" id="timeOut" placeholder="Thời Gian Ra" required>
+            <button onclick="recordTime()">Ghi Nhận Thời Gian</button>
+
+            <h3>Quản Lý Nghỉ Phép</h3>
+            <input type="text" id="leaveEmployeeId" placeholder="Mã Nhân Viên" required>
+            <input type="date" id="leaveDate" placeholder="Ngày Nghỉ" required>
+            <input type="text" id="leaveReason" placeholder="Lý Do Nghỉ" required>
+            <button onclick="requestLeave()">Xin Nghỉ Phép</button>
+
+            <h3>Báo Cáo Thời Gian Làm Việc</h3>
+            <table id="workTimeReport">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Tổng Giờ Làm Việc</th>
+                        <th>Số Ngày Nghỉ Phép</th>
+                    </tr>
+                </thead>
+                <tbody id="workTimeReportList">
+                    <!-- Báo cáo thời gian làm việc sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let employees = JSON.parse(localStorage.getItem('employees')) || [];
+        let employeeId = employees.length ? employees[employees.length - 1].id + 1 : 1;
+
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.style.display = 'none'; // Ẩn tất cả tab
+            });
+            document.getElementById(tabName).style.display = 'block'; // Hiện tab được chọn
+            if (tabName === 'listEmployee') {
+                displayEmployees(); // Hiển thị danh sách nhân viên khi chọn tab danh sách
+            }
+        }
+
+        function addEmployee() {
+            const employeeId = document.getElementById('employeeId').value; // Lấy mã nhân viên
+            const name = document.getElementById('name').value;
+            const position = document.getElementById('position').value;
+            const department = document.getElementById('department').value;
+            const joinDate = document.getElementById('joinDate').value;
+            const salary = document.getElementById('salary').value;
+
+            const employee = {
+                id: employeeId, // Sử dụng mã nhân viên nhập vào
+                name,
+                position,
+                department,
+                joinDate,
+                salary
+            };
+
+            employees.push(employee);
+            localStorage.setItem('employees', JSON.stringify(employees)); // Lưu vào localStorage
+            displayEmployees();
+            clearInputs();
+            showTab('listEmployee'); // Hiện tab danh sách sau khi thêm nhân viên
+        }
+
+        function displayEmployees() {
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+
+            employees.forEach(emp => {
+                const row = `
+                    <tr>
+                        <td>${emp.id}</td>
+                        <td>${emp.name}</td>
+                        <td>${emp.position}</td>
+                        <td>${emp.department}</td>
+                        <td>${emp.joinDate}</td>
+                        <td>${emp.salary}</td>
+                        <td>
+                            <button onclick="editEmployee(${emp.id})">Sửa</button>
+                            <button onclick="deleteEmployee(${emp.id})">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+                employeeList.innerHTML += row;
+            });
+        }
+
+        function searchEmployee() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filteredEmployees = employees.filter(emp => 
+                emp.name.toLowerCase().includes(searchInput) || emp.id.toString() === searchInput
+            );
+
+            const searchResultTable = document.getElementById('searchResult');
+            const searchEmployeeList = document.getElementById('searchEmployeeList');
+            searchEmployeeList.innerHTML = '';
+            searchResultTable.style.display = filteredEmployees.length > 0 ? '' : 'none';
+
+            filteredEmployees.forEach(emp => {
+                const row = `
+                    <tr>
+                        <td>${emp.id}</td>
+                        <td>${emp.name}</td>
+                        <td>${emp.position}</td>
+                        <td>${emp.department}</td>
+                        <td>${emp.joinDate}</td>
+                        <td>${emp.salary}</td>
+                        <td>
+                            <button onclick="editEmployee(${emp.id})">Sửa</button>
+                            <button onclick="deleteEmployee(${emp.id})">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+                searchEmployeeList.innerHTML += row;
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById('employeeId').value = ''; // Xóa mã nhân viên
+            document.getElementById('name').value = '';
+            document.getElementById('position').value = '';
+            document.getElementById('department').value = '';
+            document.getElementById('joinDate').value = '';
+            document.getElementById('salary').value = '';
+        }
+
+        function editEmployee(id) {
+            const emp = employees.find(emp => emp.id == id);
+            document.getElementById('employeeId').value = emp.id;
+            document.getElementById('name').value = emp.name;
+            document.getElementById('position').value = emp.position;
+            document.getElementById('department').value = emp.department;
+            document.getElementById('joinDate').value = emp.joinDate;
+            document.getElementById('salary').value = emp.salary;
+            showTab('addEmployee'); // Quay lại tab thêm nhân viên để chỉnh sửa
+        }
+
+        function deleteEmployee(id) {
+            employees = employees.filter(emp => emp.id != id);
+            localStorage.setItem('employees', JSON.stringify(employees)); // Cập nhật localStorage
+            displayEmployees(); // Cập nhật danh sách nhân viên
+        }
+
+        // Các hàm quản lý lương và thời gian sẽ được thực hiện tại đây
+        function updateSalary() {
+            const salaryEmployeeId = document.getElementById('salaryEmployeeId').value;
+            const newSalary = document.getElementById('newSalary').value;
+
+            const emp = employees.find(emp => emp.id == salaryEmployeeId);
+            if (emp) {
+                emp.salary = newSalary;
+                localStorage.setItem('employees', JSON.stringify(employees));
+                alert('Cập nhật lương thành công');
+            } else {
+                alert('Không tìm thấy nhân viên');
+            }
+        }
+
+        function recordTime() {
+            // Ghi nhận thời gian vào/ra
+        }
+
+        function requestLeave() {
+            // Xin nghỉ phép
+        }
+
+    </script>
+</body>
+</html>
