@@ -1,106 +1,96 @@
 body {
-    background-color: #f4f4f4; /* Nền sáng */
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
 
-nav.menu {
-    display: none; /* Ẩn menu Home và About */
-}
-
-.tab-container {
-    margin: 20px 0;
+header {
+    background:  #70bddb;
+    color: #fff;
+    padding: 10px 0;
     text-align: center;
 }
 
-.tab-menu {
-    list-style-type: none;
-    padding: 0;
-    background-color: #1e3a8a; /* Màu nền của các tab */
-    display: flex;
-    justify-content: center; /* Căn giữa */
-}
-
-.tab-menu li {
-    margin: 0 10px;
-    flex: 1; /* Chiều rộng bằng nhau cho các tab */
-}
-
-.tab-menu a {
-    color: white; /* Chữ màu trắng */
-    text-decoration: none;
-    padding: 10px 0; /* Padding trên dưới */
-    display: block; /* Để link chiếm toàn bộ chiều rộng */
-    text-align: center; /* Căn giữa chữ */
+.container {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .tabs {
-    padding: 10px;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
-label {
-    padding: 10px;
-    margin-right: 10px;
-    background-color: #1e3a8a; /* Màu nền của nhãn */
-    color: white;
+.tab-button {
+    background: #70bddb;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
     cursor: pointer;
-    display: inline-block; /* Để căn giữa */
-    width: 150px; /* Đặt chiều rộng cụ thể */
-    text-align: center; /* Căn giữa chữ */
-    border: 2px solid transparent; /* Khung trong suốt ban đầu */
-    border-radius: 5px; /* Bo tròn các góc */
+    margin-right: 5px;
+    border-radius: 5px;
 }
 
-input[type="radio"] {
-    display: none;
+.tab-button:hover {
+    background: #0056b3;
 }
 
 .tab-content {
     display: none;
-    padding: 20px;
-    background-color: white; /* Màu nền của nội dung yêu cầu */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    margin: 20px;
     border-radius: 5px;
 }
 
-.tab-content h2 {
-    margin-top: 0;
-}
-
-.tab-content p {
-    font-size: 16px;
-}
-
-.link {
-    background-color: #4eb6d6; /* Màu nền của liên kết */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
+button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
     border-radius: 5px;
 }
 
-.link:hover {
-    background-color: #28a745; /* Màu nền khi hover */
+button:hover {
+    background: #218838;
 }
 
-/* Hiệu ứng khi tab được chọn */
-input[type="radio"]:checked + label {
-    background-color: #4ecdd6; /* Màu nền khi tab được chọn */
-    border: 2px solid #1e3a8a; /* Khung màu khi tab được chọn */
-}
-
-/* Hiệu ứng khi tab Lab được chọn */
-.tab-menu li a.active {
-    background-color: #4ecdd6; /* Màu nền cho tab Lab khi được chọn */
-}
-
-footer {
-    text-align: center;
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
-    background-color: #1e3a8a; /* Màu nền giống như thanh menu */
-    color: white; /* Màu chữ trắng cho footer */
-    padding: 10px 0; /* Thêm khoảng đệm cho footer */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+h2, h3 {
+    margin: 10px 0;
 }
