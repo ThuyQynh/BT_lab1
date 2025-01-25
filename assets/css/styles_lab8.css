@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+nav {
+    background-color: #0a192f;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header{
+    background-color: black;
+}
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 5rem;
+}
+
+
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding-left: 2rem;
+    margin-right: 4rem;
+}
+.img-left{
+    float: left;
+    padding:0;
+    margin:0;
+
+}
+.img-right{
+    float: right;
+    padding:0;
+    margin:0;
+}
+
+
+.main-content {
+    min-height: 72vh;
+    padding: 0 2rem; /* Xóa padding ở trên và dưới, chỉ giữ padding bên cạnh */
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Đưa nội dung về bên trái */
+    align-items: flex-start; /* Đưa nội dung lên trên cùng */
+    margin-top:50px;
+}
+
+
+.center-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.org-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    color: #c7c7c7;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    border: 1px solid ;
+    font-weight: bold;
+}
+
+h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: #62cba7;
+}
+.hili{
+    color:#394149;
+}
+
+.subtitle, .sub-text {
+    color: #8892b0;
+    margin-bottom: 1rem;
+}
+
+.trial-form {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.email-input {
+    padding: 1rem;
+    width: 380px;
+    border-top-left-radius: 5px;
+    border: none;
+    background-color: #f0f0f0;
+    color: white;
+
+}
+
+.start-trial-btn {
+    padding: 1rem 2rem;
+    background-color: #5cdb95;
+    color: white;
+    border: none;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.learn-more {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .technology-icons-left,
+    .technology-icons-right {
+        display: none;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .trial-form {
+        flex-direction: column;
+    }
+
+    .email-input {
+        width: 100%;
+    }
+}
+.footer {
+    background-color: #0a192f; /* Màu nền tối */
+   width: 100%;
+    height: 90px;
+}

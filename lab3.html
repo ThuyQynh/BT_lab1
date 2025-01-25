@@ -1,164 +1,87 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 3 - HTML và CSS</title>
-    <style>
-        body {
-            background-color: #f4f4f4;
-            font-family: 'Times New Roman', Times, serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .tab-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .tab-menu {
-            list-style-type: none;
-            padding: 0;
-            background-color: #1e3a8a;
-            display: flex;
-            justify-content: center;
-        }
-
-        .tab-menu li {
-            margin: 0 10px;
-            flex: 1;
-        }
-
-        .tab-menu a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
-            display: block;
-            text-align: center;
-        }
-
-        .tabs {
-            padding: 10px;
-            text-align: center;
-        }
-
-        label {
-            padding: 10px;
-            margin-right: 10px;
-            background-color: #1e3a8a;
-            color: white;
-            cursor: pointer;
-            display: inline-block;
-            width: 150px;
-            text-align: center;
-            border: 2px solid transparent;
-            border-radius: 5px;
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-            margin: 20px;
-            border-radius: 5px;
-        }
-
-        .tab-content h2 {
-            margin-top: 0;
-        }
-
-        .link {
-            background-color: #60faf2;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        /* Hiệu ứng khi tab được chọn */
-        input[type="radio"]:checked + label {
-            background-color: #60faf2;
-            border: 2px solid #1e3a8a;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Chia Sẻ Tài Liệu Học Tập Cho Sinh Viên</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles_lab3.css">
 </head>
 <body>
-    <div class="tab-container">
-        <ul class="tab-menu">
-            <li><a href="lab1.html">Lab 1</a></li>
-            <li><a href="lab2.html" class="active">Lab 2</a></li>
-            <li><a href="lab3.html">Lab 3</a></li>
-            <li><a href="lab4.html">Lab 4</a></li>
-        </ul>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>EduShare</span>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm tài liệu...">
+                <i class="fas fa-search"></i>
+            </div>
+        </nav>
+        <h1>Chia Sẻ Tài Liệu Học Tập Cho Sinh Viên</h1>
+    </header>
 
-    <nav class="tabs">
-        <input type="radio" id="tab-requirement" name="tab" checked>
-        <label for="tab-requirement">Requirement</label>
-
-        <input type="radio" id="tab-design" name="tab">
-        <label for="tab-design">Design</label>
-
-        <input type="radio" id="tab-implement" name="tab">
-        <label for="tab-implement">Implement</label>
-    </nav>
-
-    <!-- Nội dung các tab -->
-    <div class="content">
-        <section id="content-requirement" class="tab-content">
-            <h2>Waiting...</h2>
-           
+    <main>
+        <section id="subjectList" class="subject-list">
+            <h2>Danh Mục Môn Học</h2>
+            <div class="subject-cards">
+                <div class="subject-card" data-subject="giao-tiep-nguoi-may">
+                    <i class="fas fa-robot"></i>
+                    <h3>Giao tiếp người máy</h3>
+                </div>
+                <div class="subject-card" data-subject="toan-roi-rac">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Toán rời rạc</h3>
+                </div>
+                <div class="subject-card" data-subject="cau-truc-du-lieu">
+                    <i class="fas fa-database"></i>
+                    <h3>Cấu trúc dữ liệu</h3>
+                </div>
+            </div>
         </section>
 
-        <section id="content-design" class="tab-content">
-            <h2>Thiết kế</h2>
-            <p>Nội dung thiết kế cho Lab 2 ở đây...</p>
+        <section id="subjectContent" class="subject-content hidden">
+            <button id="backButton" class="back-button"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            <h2 id="subjectTitle"></h2>
+            <div id="materialList" class="material-list"></div>
+            <button id="shareButton" class="share-button"><i class="fas fa-upload"></i> Chia sẻ tài liệu</button>
         </section>
 
-        <section id="content-implement" class="tab-content">
-            <h2>Triển khai</h2>
-            <p>Nội dung triển khai cho Lab 2 ở đây...</p>
-        </section>
-    </div>
+        <div id="shareModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Chia sẻ tài liệu mới</h3>
+                <form id="shareForm">
+                    <input type="text" id="materialName" placeholder="Tên tài liệu" required>
+                    <select id="materialType" required>
+                        <option value="">Chọn loại tài liệu</option>
+                        <option value="bai-giang">Bài giảng</option>
+                        <option value="bai-tap">Bài tập</option>
+                        <option value="tai-lieu-tham-khao">Tài liệu tham khảo</option>
+                    </select>
+                    <input type="file" id="materialFile" required>
+                    <div class="form-buttons">
+                        <button type="submit">Tải lên</button>
+                        <button type="button" id="cancelShare">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 
-    <script>
-        // Lắng nghe sự kiện khi tab thay đổi
-        const tabs = document.querySelectorAll('input[name="tab"]');
-        tabs.forEach(tab => {
-            tab.addEventListener('change', () => {
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.style.display = 'none'; // Ẩn tất cả nội dung
-                });
-                document.querySelector(`#content-${tab.id.split('-')[1]}`).style.display = 'block'; // Hiển thị nội dung tương ứng
-            });
-        });
-
-        // Hiển thị nội dung tab mặc định khi tải trang
-        document.querySelector(`#content-requirement`).style.display = 'block';
-    </script>
-    
     <footer>
-        <p>Trang cá nhân của Quỳnh</p>
+        <div class="footer-content">
+            <p>&copy; 2023 EduShare. Tất cả quyền được bảo lưu.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </footer>
-    <style>
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            background-color: #1e3a8a; /* Màu nền giống như thanh menu */
-            color: white; /* Màu chữ trắng cho footer */
-            padding: 10px 0; /* Thêm khoảng đệm cho footer */
-        }
-    </style>
 </body>
+<script src="assets/js/script_lab3.js"></script>
+
 </html>

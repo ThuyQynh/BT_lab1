@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Châu Thị Thuý Quỳnh</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #60a5fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            transition: all 0.3s ease;
+        }
+
+        body.dark {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .dark .card {
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .progress-bar {
+            width: 35%;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle p-2 rounded-full bg-gray-200 dark:bg-gray-700" onclick="toggleTheme()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+            </path>
+        </svg>
+    </button>
+
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="card p-8 mb-8">
+            <h1 class="text-3xl font-bold mb-4">Châu Thị Thuý Quỳnh</h1>
+            <p class="text-gray-600 dark:text-gray-300 mb-2">MSSV: 23130265</p>
+            <div class="progress-bar mt-4"></div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Đánh giá: 35%</p>
+        </div>
+
+        <div class="card p-8 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Web Cá Nhân</h2>
+            <p class="mb-4">Em đã thiết kế và xây dựng một trang iPortfolio nhằm giới thiệu bản thân, bao gồm các thông tin về kỹ năng, kinh nghiệm, và các dự án cá nhân. Trang web được tối ưu để hỗ trợ cho công việc sau này với giao diện chuyên nghiệp và khả năng mở rộng.</p>
+        </div>
+
+        <div class="card p-8 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Web Nhóm</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Phát triển trang About để giới thiệu tổng quan về dự án và nhóm</li>
+                <li>Tạo trang Styleguide, hướng dẫn các quy chuẩn về giao diện và thiết kế</li>
+            </ul>
+        </div>
+
+        <div class="card p-8 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Học Hỏi Từ Các Thành Viên</h2>
+            <p class="mb-4">Trong quá trình làm việc nhóm, em đã học được:</p>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Cách giải quyết vấn đề hiệu quả</li>
+                <li>Cải thiện kỹ năng giao tiếp và lắng nghe</li>
+                <li>
+                    Sử dụng công cụ làm việc nhóm như Git 
+                    <a href="https://github.com/ThuyQynh/BT_lab1" target="_blank" class="text-blue-500 hover:underline">
+                        [GitHub của Thuý Quỳnh]
+                    </a>
+                </li>
+                <li>Phối hợp giữa thiết kế giao diện và lập trình</li>
+                <li>Sử dụng các framework hiện đại để tối ưu hóa website</li>
+            </ul>
+        </div>
+
+        <div class="card p-8">
+            <h2 class="text-2xl font-semibold mb-4">Tổng Kết Công Việc</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold mb-2">Web Nhóm:</h3>
+                    <ul class="list-disc list-inside">
+                        <li>
+                            Trang 
+                            <a href="https://hci2024group11.github.io/Group11_Web/about.html" class="text-blue-500 hover:underline">
+                                about
+                            </a>
+                        </li>
+                        <li>
+                            Trang 
+                            <a href="https://hci2024group11.github.io/Group11_Web/styleguide.html" class="text-blue-500 hover:underline">
+                                styleguide
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Web project:</h3>
+                    <ul class="list-disc list-inside">
+                        <li>
+                            Trang 
+                            <a href="https://hci2024group11.github.io/Project_Web/blog/" target="_blank" class="text-blue-500 hover:underline">
+                                blog
+                            </a>
+                        </li>
+                        <li>
+                            Trang 
+                            <a href="https://hci2024group11.github.io/Project_Web/general-english/" target="_blank" class="text-blue-500 hover:underline">
+                                general-english
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+
+        // Subtle background animation
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.zIndex = '-1';
+        canvas.style.opacity = '0.5';
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = Math.random() * 0.2 - 0.1;
+                this.vy = Math.random() * 0.2 - 0.1;
+                this.size = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = document.body.classList.contains('dark') ? '#ffffff10' : '#00000010';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
